@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Form Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="date"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      margin-top: 10px;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Simple Form</h2>
+  <form onsubmit="return validateForm()">
+    
+    <label>Name:</label>
+    <input type="text" id="name">
+    <span class="error" id="nameError"></span>
+
+    <label>Password:</label>
+    <input type="password" id="password">
+    <span class="error" id="passError"></span>
+
+    <label>Date:</label>
+    <input type="date" id="date">
+    <span class="error" id="dateError"></span>
+
+    <label>Hobby:</label><br>
+    <input type="checkbox" name="hobby"> Reading
+    <input type="checkbox" name="hobby"> Music
+    <span class="error" id="hobbyError"></span>
+
+    <label>Email:</label>
+    <input type="text" id="email">
+    <span class="error" id="emailError"></span>
+
+    <label>Gender:</label><br>
+    <input type="radio" name="gender"> Male
+    <input type="radio" name="gender"> Female
+    <span class="error" id="genderError"></span><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      let valid = true;
+
+      // Reset all errors
+      document.getElementById("nameError").innerText = "";
+      document.getElementById("passError").innerText = "";
+      document.getElementById("dateError").innerText = "";
+      document.getElementById("hobbyError").innerText = "";
+      document.getElementById("emailError").innerText = "";
+      document.getElementById("genderError").innerText = "";
+
+      // Name
+      let name = document.getElementById("name").value;
+      if (name.length < 3) {
+        document.getElementById("nameError").innerText = "Enter valid name";
+        valid = false;
+      }
+
+      // Password
+      let pass = document.getElementById("password").value;
+      if (pass.length < 6) {
+        document.getElementById("passError").innerText = "Password too short";
+        valid = false;
+      }
+
+      // Date
+      let date = document.getElementById("date").value;
+      if (date === "") {
+        document.getElementById("dateError").innerText = "Select date";
+        valid = false;
+      }
+
+      // Hobby
+      let hobbyChecked = document.querySelectorAll("input[name='hobby']:checked").length;
+      if (hobbyChecked === 0) {
+        document.getElementById("hobbyError").innerText = "Select a hobby";
+        valid = false;
+      }
+
+      // Email
+      let email = document.getElementById("email").value;
+      if (!email.includes("@") || !email.includes(".")) {
+        document.getElementById("emailError").innerText = "Invalid email";
+        valid = false;
+      }
+
+      // Gender
+      let genderChecked = document.querySelectorAll("input[name='gender']:checked").length;
+      if (genderChecked === 0) {
+        document.getElementById("genderError").innerText = "Select gender";
+        valid = false;
+      }
+
+      if(valid === true)
+      {
+        alert("form done");
+      }
+
+      return valid;
+
+
+    }
+  </script>
+
+</body>
+</html>
