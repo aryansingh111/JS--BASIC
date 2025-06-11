@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Todo List - DOM & Event Listeners</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .todo-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    input[type="text"] {
+      width: 70%;
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #4caf50;
+      outline: none;
+    }
+
+    #addBtn {
+      padding: 10px 18px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: background 0.3s ease;
+    }
+
+    #addBtn:hover {
+      background-color: #45a049;
+    }
+
+    ul {
+      margin-top: 25px;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f1f1f1;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      transition: 0.3s ease;
+    }
+
+    li:hover {
+      background-color: #e0e0e0;
+    }
+
+    .delete {
+      background-color: #e53935;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .delete:hover {
+      background-color: #d32f2f;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h2>📝 Todo List</h2>
+  <div class="todo-container">
+    <div class="input-group">
+      <input type="text" id="todoInput" placeholder="Enter a task..." />
+      <button id="addBtn">Add Task</button>
+    </div>
+    <ul id="todoList"></ul>
+  </div>
+
+  <script>
+    const input = document.getElementById("todoInput");
+    const addBtn = document.getElementById("addBtn");
+    const list = document.getElementById("todoList");
+
+    addBtn.addEventListener("click", function () {
+      const task = input.value.trim();
+      if (task !== "") {
+        const li = document.createElement("li");
+        li.textContent = task;
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.className = "delete";
+
+        deleteBtn.addEventListener("click", function () {
+          list.removeChild(li);
+        });
+
+        li.appendChild(deleteBtn);
+        list.appendChild(li);
+
+        input.value = "";
+      } else {
+        alert("Please enter a task.");
+      }
+    });
+  </script>
+</body>
+</html> 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Quantity Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .product-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .quantity-controls button {
+      padding: 5px 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .quantity-display {
+      font-size: 20px;
+      width: 40px;
+      text-align: center;
+    }
+
+    .price-info {
+      margin-top: 10px;
+    }
+
+    .total {
+      font-weight: bold;
+      color: green;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="product-card">
+    <img src="data:image/jpeg;base64,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" alt="Wireless Mouse">
+    <h2>Wireless Mouse</h2>
+    <p>Price: ₹<span id="price">500</span></p>
+    
+    <div class="quantity-controls">
+      <button id="decrease">−</button>
+      <span class="quantity-display" id="quantity">0</span>
+      <button id="increase">+</button>
+    </div>
+
+    <div class="price-info">
+      Total: ₹<span class="total" id="total">0</span>
+    </div>
+  </div>
+
+  <script>
+    const price = 500;
+    let quantity = 0;
+
+    const quantityDisplay = document.getElementById("quantity");
+    const totalDisplay = document.getElementById("total");
+
+    document.getElementById("increase").addEventListener("click", () => {
+      quantity++;
+      updateCart();
+    });
+
+    document.getElementById("decrease").addEventListener("click", () => {
+      if (quantity > 0) {
+        quantity--;
+        updateCart();
+      }
+    });
+
+    function updateCart() {
+      quantityDisplay.textContent = quantity;
+      totalDisplay.textContent = quantity * price;
+    }
+  </script>
+</body>
+</html>

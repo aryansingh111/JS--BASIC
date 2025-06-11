@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #count {
+            font-size: 48px;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Counter</h1>
+        <div id="count">0</div>
+        <div class="buttons">
+            <button id="increase">Increase</button>
+            <button id="decrease">Decrease</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        const display = document.getElementById("count");
+
+        document.getElementById("increase").addEventListener("click", () => {
+            count++;
+            updateDisplay();
+        });
+
+        document.getElementById("decrease").addEventListener("click", () => {
+            count--;
+            updateDisplay();
+        });
+
+        document.getElementById("reset").addEventListener("click", () => {
+            count = 0;
+            updateDisplay();
+        });
+
+        function updateDisplay() {
+            display.innerText = count;
+        }
+
+    </script>
+</body>
+
+</html>
